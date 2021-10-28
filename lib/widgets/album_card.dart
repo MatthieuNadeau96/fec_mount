@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AlbumCard extends StatelessWidget {
-  const AlbumCard({Key? key}) : super(key: key);
+  AlbumCard({
+    Key? key,
+    required this.albumImage,
+    required this.albumName,
+    required this.releaseDate,
+    required this.albumPrice,
+  }) : super(key: key);
+
+  String albumImage;
+  String albumName;
+  DateTime releaseDate;
+  double albumPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -13,36 +25,34 @@ class AlbumCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Placeholder(
-            fallbackHeight: 160,
-            fallbackWidth: 130,
+          Flexible(
+            child: Image(
+              image: NetworkImage(albumImage),
+            ),
           ),
           const SizedBox(width: 15),
-          Expanded(
+          Flexible(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FittedBox(
-                  fit: BoxFit.contain,
-                  child: Text(
-                    'Album Name',
-                    style: theme.textTheme.headline5,
-                  ),
-                ),
-                const Spacer(flex: 2),
                 Text(
-                  'Release Date',
+                  albumName,
+                  style: theme.textTheme.headline6,
+                ),
+                const SizedBox(height: 15),
+                Text(
+                  'Released On: ${DateFormat.yMMMd().format(releaseDate)}',
                   style: theme.textTheme.bodyText1,
                 ),
-                const Spacer(flex: 1),
+                // const Spacer(flex: 1),
                 Text(
-                  'Price: \$0.00',
+                  'Price: \$$albumPrice',
                   style: theme.textTheme.bodyText2,
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
