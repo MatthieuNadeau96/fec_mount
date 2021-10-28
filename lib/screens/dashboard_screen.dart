@@ -1,3 +1,4 @@
+import 'package:fec_mount/services/album_service.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -5,9 +6,14 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Dashboard'),
+        child: TextButton(
+          onPressed: () async {
+            await AlbumService().getHttp();
+          },
+          child: Text('Tap me'),
+        ),
       ),
     );
   }
