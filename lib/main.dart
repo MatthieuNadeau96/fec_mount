@@ -1,4 +1,4 @@
-import 'package:fec_mount/screens/dashboard.dart';
+import 'package:fec_mount/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
