@@ -13,22 +13,35 @@ class AlbumCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Placeholder(),
-          Column(
-            children: [
-              Text(
-                'Album Name',
-                style: theme.textTheme.headline3,
-              ),
-              Text(
-                'Release Date',
-                style: theme.textTheme.headline6,
-              ),
-              Text(
-                'Price: \$0.00',
-                style: theme.textTheme.bodyText1,
-              ),
-            ],
+          const Placeholder(
+            fallbackHeight: 160,
+            fallbackWidth: 130,
+          ),
+          const SizedBox(width: 15),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    'Album Name',
+                    style: theme.textTheme.headline5,
+                  ),
+                ),
+                const Spacer(flex: 2),
+                Text(
+                  'Release Date',
+                  style: theme.textTheme.bodyText1,
+                ),
+                const Spacer(flex: 1),
+                Text(
+                  'Price: \$0.00',
+                  style: theme.textTheme.bodyText2,
+                ),
+              ],
+            ),
           )
         ],
       ),
