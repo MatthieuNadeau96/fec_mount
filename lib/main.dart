@@ -1,8 +1,23 @@
+import 'package:fec_mount/models/album_model.dart';
+import 'package:fec_mount/models/collection_model.dart';
 import 'package:fec_mount/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Collection>(
+          create: (context) => Collection(),
+        ),
+        ChangeNotifierProvider<Album>(
+          create: (context) => Album(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
