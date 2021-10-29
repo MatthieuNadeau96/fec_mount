@@ -1,22 +1,20 @@
+import 'package:fec_mount/models/album_model.dart';
+import 'package:fec_mount/models/collection_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class AlbumCard extends StatelessWidget {
   AlbumCard({
     Key? key,
-    required this.albumImage,
-    required this.albumName,
-    required this.releaseDate,
-    required this.albumPrice,
+    required this.album,
   }) : super(key: key);
 
-  String albumImage;
-  String albumName;
-  DateTime releaseDate;
-  double albumPrice;
+  Album album;
 
   @override
   Widget build(BuildContext context) {
+    Collection _collection = Provider.of<Collection>(context);
     ThemeData theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -24,35 +22,44 @@ class AlbumCard extends StatelessWidget {
         vertical: 15,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Flexible(
-            child: Image(
-              image: NetworkImage(albumImage),
-            ),
+          Image(
+            image: NetworkImage(album.albumImage ?? ''),
           ),
           const SizedBox(width: 15),
-          Flexible(
+          Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  albumName,
+                  album.albumName ?? '',
                   style: theme.textTheme.headline6,
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  'Released On: ${DateFormat.yMMMd().format(releaseDate)}',
+                  'Released On: ${DateFormat.yMMMd().format(album.releaseDate!)}',
                   style: theme.textTheme.bodyText1,
                 ),
                 // const Spacer(flex: 1),
                 Text(
-                  'Price: \$$albumPrice',
+                  'Price: \$${album.albumPrice}',
                   style: theme.textTheme.bodyText2,
                 ),
               ],
             ),
           ),
+          IconButton(
+              onPressed: () {
+                _collection.toggleFavorite(album);
+              },
+              icon: Icon(
+                album.isFavorite
+                    ? Icons.favorite_rounded
+                    : Icons.favorite_border_rounded,
+              )),
         ],
       ),
     );
