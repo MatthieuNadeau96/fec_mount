@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class Album {
   final String? artistName;
   final String? albumName;
@@ -26,10 +24,10 @@ class Album {
 
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
-      artistName: json['artistName'] ?? 'Error',
-      albumName: json['collectionName'] ?? 'Error',
-      albumImage: json['artworkUrl100'] ?? '',
-      albumPrice: json['collectionPrice'] ?? 0.00,
+      artistName: json['artistName'],
+      albumName: json['collectionName'],
+      albumImage: json['artworkUrl100'],
+      albumPrice: json['collectionPrice'],
       releaseDate: DateTime.parse(json['releaseDate']),
     );
   }
