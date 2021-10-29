@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class Album extends ChangeNotifier {
+class Album {
   final String? artistName;
   final String? albumName;
   final String? albumImage;
