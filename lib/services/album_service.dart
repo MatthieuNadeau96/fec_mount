@@ -11,7 +11,6 @@ class AlbumService {
 
     try {
       var response = await Dio().get(uri);
-      print('Response -> $response');
       Map<String, dynamic> decodedList = jsonDecode(response.data.toString());
       List results = decodedList['results'];
       for (var album in results) {
@@ -20,7 +19,7 @@ class AlbumService {
         }
       }
     } catch (e) {
-      print('Error => $e');
+      // Error Handle
     }
 
     return albumList;
