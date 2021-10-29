@@ -1,10 +1,12 @@
-class Album {
+import 'package:flutter/cupertino.dart';
+
+class Album extends ChangeNotifier {
   final String? artistName;
   final String? albumName;
   final String? albumImage;
   final double? albumPrice;
   final DateTime? releaseDate;
-  bool isLiked = false;
+  bool isFavorite = false;
 
 // artistName - (Artist Name)
 // collectionName - (Album Name)
@@ -19,7 +21,7 @@ class Album {
     this.albumImage,
     this.albumPrice,
     this.releaseDate,
-    this.isLiked = false,
+    this.isFavorite = false,
   });
 
   factory Album.fromJson(Map<String, dynamic> json) {
