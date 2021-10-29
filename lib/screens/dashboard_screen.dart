@@ -43,21 +43,23 @@ class _DashboardState extends State<Dashboard> {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData) {
                 List<Album> albumList = snapshot.data!;
+                if (albumList.isNotEmpty) {
+                  _collection.albumList = albumList;
 
-                _collection.albumList = albumList;
-
-                return ListView.builder(
-                  itemCount: albumList.length,
-                  itemBuilder: (context, index) {
-                    Album album = albumList[index];
-                    return AlbumCard(
-                      album: album,
-                    );
-                  },
-                );
+                  return ListView.builder(
+                    itemCount: albumList.length,
+                    itemBuilder: (context, index) {
+                      Album album = albumList[index];
+                      return AlbumCard(
+                        album: album,
+                      );
+                    },
+                  );
+                }
               }
-              // TODO: Handle if no data
-
+              return const Center(
+                child: Text('There appears to be no data'),
+              );
             }
             return const Center(
               child: Text('Something went wrong...'),
