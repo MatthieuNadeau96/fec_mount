@@ -43,7 +43,6 @@ class AlbumCard extends StatelessWidget {
                   'Released On: ${DateFormat.yMMMd().format(album.releaseDate!)}',
                   style: theme.textTheme.bodyText1,
                 ),
-                // const Spacer(flex: 1),
                 Text(
                   'Price: \$${album.albumPrice}',
                   style: theme.textTheme.bodyText2,
@@ -52,14 +51,15 @@ class AlbumCard extends StatelessWidget {
             ),
           ),
           IconButton(
-              onPressed: () {
-                _collection.toggleFavorite(album);
-              },
-              icon: Icon(
-                album.isFavorite
-                    ? Icons.favorite_rounded
-                    : Icons.favorite_border_rounded,
-              )),
+            onPressed: () {
+              _collection.toggleFavorite(album);
+            },
+            icon: Icon(
+              album.isFavorite
+                  ? Icons.favorite_rounded
+                  : Icons.favorite_border_rounded,
+            ),
+          ),
         ],
       ),
     );
